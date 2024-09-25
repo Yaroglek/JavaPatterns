@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+/**
+ * Паттерн Prototype.
+ */
 @Entity
 @Table(name = "options")
 @AllArgsConstructor
@@ -22,4 +25,13 @@ public class Option {
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;
+
+    @ManyToOne
+    @JoinColumn(name = "answer_id")
+    private Answer answer;
+
+    public Option(Option option, @NonNull Question question) {
+        this.text = option.text;
+        this.question = question;
+    }
 }

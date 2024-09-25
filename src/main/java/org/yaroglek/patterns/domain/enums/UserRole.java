@@ -1,4 +1,4 @@
-package org.yaroglek.patterns.domain;
+package org.yaroglek.patterns.domain.enums;
 
 public enum UserRole {
     ADMIN,

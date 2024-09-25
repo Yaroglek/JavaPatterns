@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.util.List;
 
@@ -17,6 +18,12 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
+    @ManyToOne
+    @JoinColumn(name = "response_id")
+    private Response response;
+
+    @NonNull
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;

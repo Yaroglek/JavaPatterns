@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  */
 public class Logger {
     private static Logger instance;
-    private static final String LOG_FILE = "application.log";
+    private static final String LOG_FILE = "src/main/java/org/yaroglek/patterns/extern/logger/application.log";
 
     private Logger() {}
 
@@ -22,7 +22,7 @@ public class Logger {
     }
 
     public void log(String msg) {
-        String logMessage = LocalDateTime.now() + ": " + msg;
+        String logMessage = LocalDateTime.now() + ": " + msg + "\n";
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(LOG_FILE, true))) {
             bw.write(logMessage);

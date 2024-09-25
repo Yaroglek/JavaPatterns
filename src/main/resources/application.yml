@@ -1,0 +1,12 @@
+server:
+  port: 8085
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:dev_db
+    username: dev
+    password: dev
+    driverClassName: org.h2.Driver
+  h2:
+    console:
+      enabled: true
