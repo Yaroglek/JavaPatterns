@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.yaroglek.patterns.app.service.UserService;
 import org.yaroglek.patterns.domain.User;
-import org.yaroglek.patterns.domain.enums.UserRole;
 import org.yaroglek.patterns.extern.assembler.UserAssembler;
 import org.yaroglek.patterns.extern.dto.UserDTO;
 
@@ -15,17 +14,12 @@ import org.yaroglek.patterns.extern.dto.UserDTO;
 @RequestMapping("/users")
 @AllArgsConstructor
 public class UserController {
-    private UserService userService;
-    private UserAssembler userAssembler;
+    private final UserService userService;
+    private final UserAssembler userAssembler;
 
     @PostMapping
     public ResponseEntity<UserDTO> createUser(@RequestBody @Valid UserDTO userDTO) {
-        User newUser = new User();
-
-        newUser.setUsername(userDTO.getUsername());
-        newUser.setEmail(userDTO.getEmail());
-        newUser.setAdditionalInfo(userDTO.getAdditionalInfo());
-        newUser.setRole(UserRole.valueOf(userDTO.getRole()));
+        User newUser = userAssembler.toEntity(userDTO);
 
         userService.createUser(newUser);
 
