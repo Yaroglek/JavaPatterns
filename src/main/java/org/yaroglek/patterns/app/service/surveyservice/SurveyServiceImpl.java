@@ -1,4 +1,4 @@
-package org.yaroglek.patterns.app.service;
+package org.yaroglek.patterns.app.service.surveyservice;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,7 @@ import org.yaroglek.patterns.extern.logger.Logger;
 
 @Service
 @AllArgsConstructor
-public class SurveyService {
+public class SurveyServiceImpl implements SurveyService {
     private final SurveyRepository surveyRepository;
 
     public Survey createSurvey(Survey survey) {
