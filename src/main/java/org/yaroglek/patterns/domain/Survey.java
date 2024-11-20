@@ -5,9 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.yaroglek.patterns.domain.iterator.QuestionIterator;
+import org.yaroglek.patterns.domain.iterator.SurveyIterator;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Паттерн Prototype.
@@ -35,7 +38,7 @@ public class Survey {
     private LocalDateTime endDateTime;
 
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, orphanRemoval = true)
-    private LinkedList<Question> questions;
+    private List<Question> questions;
 
     public Survey(Survey survey) {
         this.title = survey.title;
@@ -49,5 +52,9 @@ public class Survey {
                 this.questions.add(new Question(question, this));
             }
         }
+    }
+
+    public SurveyIterator<Question> getQuestionIterator() {
+        return new QuestionIterator(questions);
     }
 }
