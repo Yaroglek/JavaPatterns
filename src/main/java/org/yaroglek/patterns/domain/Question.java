@@ -38,6 +38,9 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Option> options;
 
+    @OneToMany(mappedBy = "question")
+    private List<Answer> answers;
+
     public Question(Question question, @NonNull Survey survey) {
         this.questionText = question.getQuestionText();
         this.type = question.getType();

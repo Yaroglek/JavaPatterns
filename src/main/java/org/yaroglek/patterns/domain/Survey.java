@@ -44,6 +44,9 @@ public class Survey {
     @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions;
 
+    @OneToMany(mappedBy = "survey")
+    private List<Response> responses;
+
     public Survey() {
         this.state = new DraftState();
     }
